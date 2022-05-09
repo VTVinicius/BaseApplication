@@ -6,10 +6,8 @@ apply from: 'dependencies.gradle'
 
 
 buildscript {
-    ext{
-        kotlin_version = '1.6.10'
-    }
-    ext.kotlinVersion = '1.6.10'
+
+    ext.kotlinVersion = '1.6.21'
 
     repositories {
         google()
@@ -20,9 +18,9 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
 
     }
 }

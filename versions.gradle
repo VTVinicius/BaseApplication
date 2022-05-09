@@ -9,7 +9,6 @@ ext {
 
     //kotlin
     coroutineVersion = "1.3.9"
-    kotlinVersion = '1.5.30'
 
     //androidx
     appCompatVersion = "1.3.0"
