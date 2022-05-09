@@ -1,0 +1,81 @@
+ext {
+
+    commonsDependencies = [
+            [configuration: "implementation", dependency: "$kotlin"],
+            [configuration: "implementation", dependency: "$kotlinReflect"],
+            [configuration: "implementation", dependency: "$androidKtxCore"],
+            [configuration: "implementation", dependency: "$coroutine"],
+            [configuration: "implementation", dependency: "$koinScope"]
+    ]
+
+    appDependencies = commonsDependencies + testAppDependencies + [
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+            [configuration: "implementation", dependency: "$lifecycleJava8"],
+            [configuration: "implementation", dependency: "$lifecycleXt"],
+            [configuration: "implementation", dependency: "$navigationUi"],
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$navigationFragment"],
+            [configuration: "implementation", dependency: "$constraintLayout"],
+            [configuration: "implementation", dependency: "$material"],
+            [configuration: "implementation", dependency: "$glide"],
+            [configuration: "annotationProcessor", dependency: "$glideAnnotation"],
+            [configuration: "implementation", dependency: "$flexbox"],
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$swiperefreshlayout"]
+    ]
+
+    intentDependencies = appDependencies + [
+            [configuration: "implementation", dependency: "$navigationFragment"],
+            [configuration: "implementation", dependency: "$navigationUi"],
+            [configuration: "implementation", dependency: "$gson"]
+    ]
+
+    diDependencies = commonsDependencies + [
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModel"],
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$retrofitCoroutine"],
+            [configuration: "implementation", dependency: "$httpInterceptor"],
+            [configuration: "implementation", dependency: "$gsonConvertFacotory"],
+            [configuration: "implementation", dependency: "$room"]
+    ]
+
+    presentationDependencies = commonsDependencies + testPresentationDependencies + [
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModel"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+            [configuration: "implementation", dependency: "$lifecycleXt"],
+            [configuration: "implementation", dependency: "$liveData"]
+    ]
+
+    domainDependencies = commonsDependencies + testDomainDependencies + [
+            [configuration: "implementation", dependency: "$gson"]
+    ]
+
+    dataDependencies = commonsDependencies + testDataDependencies + [
+            [configuration: "implementation", dependency: "$room"]
+    ]
+
+    dataLocalDependencies = dataDependencies + testDataLocalDependencies +[
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$gsonConvertFacotory"],
+            [configuration: "kapt", dependency: "$roomCompiler"],
+            [configuration: "implementation", dependency: "$roomKtx"],
+            [configuration: "implementation", dependency: "$roomRx"],
+            [configuration: "implementation", dependency: "$sqlite"]
+    ]
+
+    dataRemoteDependencies = dataDependencies + [
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$retrofitCoroutine"],
+            [configuration: "implementation", dependency: "$httpInterceptor"],
+            [configuration: "implementation", dependency: "$gsonConvertFacotory"],
+            [configuration: "implementation", dependency: "$okhttp"]
+    ]
+
+}

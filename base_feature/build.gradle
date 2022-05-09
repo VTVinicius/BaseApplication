@@ -1,0 +1,15 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+
+apply from: "$rootProject.projectDir/android-common.gradle"
+
+dependencies {
+
+    implementation project(':domain')
+    implementation project(':uikit')
+
+    appDependencies.each { add(it.configuration, it.dependency, it.options) }
+    presentationDependencies.each { add(it.configuration, it.dependency, it.option) }
+}

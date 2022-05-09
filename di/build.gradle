@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply from: "$rootProject.projectDir/android-common.gradle"
+
+dependencies {
+
+    implementation project(':navigation')
+    implementation project(':base_feature')
+    implementation project(':domain')
+    implementation project(':data')
+    implementation project(':data_remote')
+    implementation project(':data_local')
+
+    diDependencies.each { add(it.configuration, it.dependency, it.option) }
+
+}
+repositories {
+    mavenCentral()
+}

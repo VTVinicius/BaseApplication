@@ -1,0 +1,48 @@
+ext {
+    testCommonsDependencies = [
+            [configuration: "testImplementation", dependency: "$junit"],
+            [configuration: "testImplementation", dependency: "$mockitoKotlin"],
+            [configuration: "testImplementation", dependency: "$kotlinJunit"],
+            [configuration: "testImplementation", dependency: "$koinTest"],
+            [configuration: "testImplementation", dependency: "$kotlinTest"]
+    ]
+
+    androidTestCommonsDependencies = testCommonsDependencies + [
+            [configuration: "androidTestImplementation", dependency: "$androidMockk"],
+            [configuration: "androidTestImplementation", dependency: "$androidJunit"],
+            [configuration: "androidTestImplementation", dependency: "$androidTestRunner"],
+            [configuration: "androidTestImplementation", dependency: "$androidCoreTest"],
+            [configuration: "androidTestImplementation", dependency: "$coreTesting"],
+            [configuration: "androidTestImplementation", dependency: "$arch"]
+    ]
+
+    testAppDependencies = testCommonsDependencies + [
+
+    ]
+
+    testPresentationDependencies = testCommonsDependencies + [
+            [configuration: "testImplementation", dependency: "$coreTesting"],
+            [configuration: "testImplementation", dependency: "$mockk"]
+    ]
+
+    testIntentDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDomainDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDataDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDataRemoteDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDataLocalDependencies = androidTestCommonsDependencies + [
+
+    ]
+
+}

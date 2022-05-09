@@ -1,0 +1,53 @@
+ext {
+    def envProperties = new Properties()
+    envProperties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+    ext.environmentProperties = envProperties
+}
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        versionName androidVersionName
+        versionCode androidVersionCode
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    kotlinOptions {
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding false
+    }
+}

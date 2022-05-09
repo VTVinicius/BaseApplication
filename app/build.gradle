@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        maven { url "https://plugins.gradle.org/m2/" }
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+    }
+}
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+apply from: "$rootProject.projectDir/android-common.gradle"
+
+
+dependencies {
+
+    implementation project(':di')
+    implementation project(':base_feature')
+    implementation project(':navigation')
+
+    appDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

@@ -1,0 +1,11 @@
+rootProject.name = "Base Application"
+include ':app'
+include ':base_feature'
+include ':data'
+include ':data_local'
+include ':data_remote'
+include ':di'
+include ':domain'
+include ':navigation'
+include ':feature'
+include ':uikit'
