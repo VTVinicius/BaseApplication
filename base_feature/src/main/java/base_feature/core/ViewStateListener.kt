@@ -15,8 +15,6 @@ interface ViewStateListener {
 
         fun hideLoading()
 
-        fun navigateToLogin()
-
         fun handlePresentationException(error: DataSourceException, action: (() -> Unit)? = null)
 
         fun handleNoNetworkConnectionException(action: (() -> Unit)? = null)

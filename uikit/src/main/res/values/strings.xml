@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="something_went_wrong">Algo deu errado</string>
+    <string name="generic_network_error_description">Ocorreu um problema ao validar as informações. Verifique sua <b>conexão de internet</b> e tente novamente</string>
+    <string name="understood">Entendi</string>
+    <string name="generic_error_title">Ops!</string>
+    <string name="generic_error_description">Ocorreu um problema, por favor tente novamente mais tarde.</string>
+</resources>

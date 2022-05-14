@@ -14,7 +14,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import base_feature.dialog.GenericErrorBottomSheet
 import base_feature.dialog.LoadingDialog
+import base_feature.utils.extensions.showBottomSheet
+import com.example.base_feature.R
+import com.example.domain.exception.DataSourceException
 import org.koin.core.KoinComponent
 
 abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListener, KoinComponent {
@@ -115,15 +119,8 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
         loadingDialogFragment = null
     }
 
-    override fun navigateToLogin() {
-        baseNavigation.navigateToLogin()
-    }
 
-    override fun handleWithUnauthorized(error: UnauthorizedException) {
-        error.message?.let {
-            showErrorDialog(description = it, action = this::navigateToLogin)
-        } ?: navigateToLogin()
-    }
+
 
     override fun handlePresentationException(error: DataSourceException, action: (() -> Unit)?) {
         showErrorDialog(
@@ -138,9 +135,9 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
 
     override fun handleNoNetworkConnectionException(action: (() -> Unit)?) {
         showErrorDialog(
-            title = getString(UikitR.string.something_went_wrong),
-            description = getString(UikitR.string.generic_network_error_description),
-            buttonText = getString(UikitR.string.understood),
+            title = getString(R.string.something_went_wrong),
+            description = getString(R.string.generic_network_error_description),
+            buttonText = getString(R.string.understood),
             action = {
                 if (action != null) action.invoke()
                 else activity?.onBackPressed()
@@ -154,9 +151,9 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
 
     fun showGenericErrorDialog() {
         showErrorDialog(
-            title = getString(UikitR.string.generic_error_title),
-            description = getString(UikitR.string.generic_error_description),
-            buttonText = getString(UikitR.string.understood),
+            title = getString(R.string.generic_error_title),
+            description = getString(R.string.generic_error_description),
+            buttonText = getString(R.string.understood),
             action = {
                 activity?.onBackPressed()
             },
@@ -176,15 +173,11 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
         backButtonIsVisible: Boolean = false,
         backButtonListener: (() -> Unit)? = null
     ) {
-        postPageView(
-            BaseAppEventsConstants.GENERIC_ERROR_SCREEN,
-            BaseAppEventsConstants.ERROR_FLOW
-        )
         GenericErrorBottomSheet.newInstance(
             drawable = drawable,
-            title = title ?: getString(UikitR.string.generic_error_title),
-            description = description ?: getString(UikitR.string.generic_network_error_description),
-            buttonText = buttonText ?: getString(UikitR.string.understood),
+            title = title ?: getString(R.string.generic_error_title),
+            description = description ?: getString(R.string.generic_network_error_description),
+            buttonText = buttonText ?: getString(R.string.understood),
             onPressed = {
                 action?.invoke()
             },

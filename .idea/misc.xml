@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/almic/Documents/GitHub/BaseApplication/base_feature/src/main/res/layout/generic_error_bottom_sheet.xml" value="0.358695652173913" />
         <entry key="..\:/Users/almic/Documents/GitHub/BaseApplication/base_feature/src/main/res/layout/loading_dialog.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/almic/Documents/GitHub/BaseApplication/uikit/src/main/res/drawable/bg_bottom_sheet.xml" value="0.2985" />
       </map>
     </option>
   </component>
