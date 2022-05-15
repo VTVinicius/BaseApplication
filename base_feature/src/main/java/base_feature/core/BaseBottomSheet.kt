@@ -87,5 +87,4 @@ abstract class BaseBottomSheet<Binding : ViewBinding> : BottomSheetDialogFragmen
     override fun handleNoNetworkConnectionException(action: (() -> Unit)?) {
         return
     }
-} {
 }
