@@ -14,15 +14,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import base_feature.dialog.GenericBottomSheet
 import base_feature.dialog.GenericErrorBottomSheet
 import base_feature.dialog.LoadingDialog
+import base_feature.utils.KeyboardEventListener
+import base_feature.utils.extensions.hideKeyboard
 import base_feature.utils.extensions.showBottomSheet
 import com.example.base_feature.R
 import com.example.domain.exception.DataSourceException
 import org.koin.core.KoinComponent
 
 abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListener, KoinComponent {
-
 
     private var _binding: Binding? = null
         get() {
@@ -40,8 +42,6 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
 
             return field
         }
-
-    private var loadingLottie: BottomSheetLottie? = null
 
     protected val binding: Binding get() = _binding!!
 
@@ -201,7 +201,7 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
             drawable = drawable,
             title = title,
             description = description ?: "",
-            buttonText = buttonText ?: getString(UikitR.string.understood),
+            buttonText = buttonText ?: getString(R.string.understood),
             onPressed = {
                 action?.invoke()
             },
@@ -210,24 +210,9 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
         ).showBottomSheet(this@BaseFragment)
     }
 
-    protected fun showLottie(lottieEnum: Int) {
-        this.let { fragment ->
-            lifecycleScope.launchWhenResumed {
-                loadingLottie = BottomSheetLottie.newInstance(type = lottieEnum)
-                loadingLottie?.showBottomSheet(fragment)
-            }
-        }
-    }
-
-    protected fun hideLottie() = lifecycleScope.launchWhenResumed {
-        loadingLottie?.dismissAllowingStateLoss()
-    }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        loadingLottie = null
         keyboardEventListener = null
         loadingDialogFragment = null
     }
@@ -242,13 +227,5 @@ abstract class BaseFragment <Binding : ViewBinding> : Fragment(), ViewStateListe
         (requireActivity() as? AppCompatActivity)?.apply {
             supportActionBar?.setDisplayHomeAsUpEnabled(enabled)
         }
-    }
-
-    fun postPageView(screenName: String, flowName: String) {
-        corebaseViewModel.postPageView(screenName, flowName)
-    }
-
-    fun postPageClick(screenName: String, flowName: String, buttonName: String) {
-        corebaseViewModel.postPageClick(screenName, flowName, buttonName)
     }
 }
